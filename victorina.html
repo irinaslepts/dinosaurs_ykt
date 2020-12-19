@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz</title>
+	<html lang="en">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<img src="dino.png" style="" class="" >
+<div class="container">
+	
+			<div class="quiz">
+  		<div id="score" class="hidden"></div>
+  			<div class="quizz">
+  				
+    			<h1 class="question">Кто из этих динозавров относится к тероподам?</h1>
+    		<ol>
+      			<li><input name="radio" type="radio">Камаразавр</li>
+      			<li><input name="radio" type="radio">Плезиозавр</li>
+      			<li><input name="radio" type="radio">Паралититан</li>
+      			<li><input name="radio" type="radio">Аллозавр</li>
+   			 </ol>
+   			 
+   			 <button id="go" class="btn btn-success d-block" style="margin-top: 10px">Дальше</button>
+  			</div>
+			</div>
+</div>
+
+<script type="text/javascript">
+	let li = document.getElementsByTagName('li');
+let h = document.getElementsByTagName('h1');
+let click = 0;
+let score = 0;
+let radio = document.getElementsByName('radio');
+let input = '<input name="radio" type="radio">';
+let quizz = document.getElementsByClassName('quizz');
+let innerScore = document.getElementById('score');
+document.getElementById('go').addEventListener('click', questionPush);
+
+let arr = [
+  ['', '', '', '', '', 3],
+  ['В каком районе Якутии были найдены первые окаменелости динозавров?', 'Хоринский наслег', 'Оймяконский улус', 'Центральный район', 'Таттинский улус', 0],
+  ['В каком периоде жил стегозавр?', 'Ранний меловой период', 'Поздняя юра', 'Триасовый период', 'Девонский период', 1],
+  ['Какой динозавр не обитал в Якутии?', 'Целуразавр', 'Камаразавр', 'Тирранозавр рекс', 'Аллозавр', 2]
+];
+
+function questionPush() {
+  test();
+  innerTest();
+  
+  h[0].innerHTML = arr[click][0];
+  li[0].innerHTML = input + arr[click][1];
+  li[1].innerHTML = input + arr[click][2];
+  li[2].innerHTML = input + arr[click][3];
+  li[3].innerHTML = input + arr[click][4];
+
+}
+
+function innerTest() {
+  if (click < arr.length - 1) {
+    click++;
+  } else {
+    quizz[0].classList.add('hidden');
+    innerScore.innerHTML = "Ваш результат: " + score + " из " + arr.length
+    innerScore.classList.remove('hidden');
+  }
+}
+
+function test() {
+  if (radio[arr[click][5]].checked) {
+    score++;
+  }
+}
+</script>
+</body>
+</html>
